@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "jsxFactory": "h",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "ES5",
+    "sourceMap": true,
+    "rootDir": "./",
+    "baseUrl": ".",
+    "paths": {
+      "@server": ["./server/*"],
+      "@client": ["./client/*"],
+      "@shared": ["./shared/*"],
+      "@env": ["env.ts"]
+    }
+  }
+}
