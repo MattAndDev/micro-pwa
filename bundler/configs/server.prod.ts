@@ -5,7 +5,8 @@ import baseConf from './server.base'
 import { Configuration } from 'webpack'
 
 const conf: Configuration = {
-  mode: 'production'
+  mode: 'production',
+  stats: 'normal'
 }
 
 export default merge(baseConf, conf)

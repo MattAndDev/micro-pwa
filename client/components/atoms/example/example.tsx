@@ -1,18 +1,16 @@
 import { h, FunctionalComponent } from 'preact'
-import { createUseStyles } from 'react-jss'
+import { useStyles } from './example.styles'
 
-const useStyles = createUseStyles({
-  wrap: {
-    background: 'red',
-  },
-})
-export const Example: FunctionalComponent<{ onChange?: () => void }> = ({
+export type ExampleProps = h.JSX.HTMLAttributes<HTMLButtonElement>
+
+export const Example: FunctionalComponent<ExampleProps> = ({
   children,
+  className,
   ...rest
 }) => {
   const { wrap } = useStyles()
   return (
-    <button className={wrap} {...rest}>
+    <button className={`${wrap} ${className}`.trim()} {...rest}>
       {children}
     </button>
   )

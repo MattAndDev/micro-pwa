@@ -9,9 +9,8 @@
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@server": ["./server/*"],
-      "@client": ["./client/*"],
-      "@shared": ["./shared/*"],
+      "@server/*": ["./server/*"],
+      "@client/*": ["./client/*"],
       "@env": ["env.ts"]
     }
   }

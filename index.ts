@@ -2,48 +2,47 @@ import * as yargs from 'yargs'
 const args = yargs
   .option('hmr', {
     alias: 'h',
-    type: 'string',
+    type: 'boolean',
     default: '',
-    description: 'Enables hmr',
+    description: 'Enables hmr'
   })
   .option('watch', {
     alias: 'w',
-    type: 'string',
+    type: 'boolean',
     default: '',
-    description: 'Enables watch mode watching',
+    description: 'Enables watch mode watching'
   })
   .option('devServer', {
     alias: 'd',
-    type: 'string',
+    type: 'boolean',
     default: '',
-    description: 'Enables dev server',
+    description: 'Enables dev server'
   })
   .option('serverPort', {
     alias: 'p',
     type: 'string',
     default: '4242',
-    description: 'Server port',
+    description: 'Server port'
   })
   .option('bundleMode', {
     alias: 'b',
     type: 'string',
     default: 'production',
-    description: "Set bundler mode: 'production' or 'debug'",
+    description: "Set bundler mode: 'production' or 'debug'"
   })
   .option('nodeEnv', {
     alias: 'n',
     type: 'string',
     default: 'production',
-    description: 'Sets NODE_ENV at build time!',
+    description: 'Sets NODE_ENV at build time!'
   })
   .option('outDir', {
     alias: 'o',
     type: 'string',
     default: './app',
-    description: 'Sets output directory',
+    description: 'Sets output directory'
   }).argv
 
-// assign to env
 process.env.NODE_ENV = args.nodeEnv
 process.env.SERVER_PORT = args.serverPort
 process.env.HMR_ENABLED = args.hmr

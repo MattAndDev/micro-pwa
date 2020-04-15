@@ -17,7 +17,7 @@ export const hmrServer = (hmr = false, watch = false): void => {
   if (hmr) {
     app.use(
       require('webpack-hot-middleware')(compiler, {
-        stats: CONF.stats,
+        stats: 'none',
         path: '/__webpack_hmr'
       })
     )

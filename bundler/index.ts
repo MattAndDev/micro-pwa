@@ -4,7 +4,7 @@ import * as webpack from 'webpack'
 import serverDebugConf from './configs/server.debug'
 import serverProdConf from './configs/server.prod'
 import clientDebugConf from './configs/client.debug'
-import clientProdConf from './configs/client.debug'
+import clientProdConf from './configs/client.prod'
 import nodemon = require('nodemon')
 import env from '@env'
 
@@ -19,10 +19,10 @@ let localDevServer: typeof nodemon
 
 // bundle server
 webpack({ ...serverConf, watch: !!env.WATCH }, (err, stats) => {
-  if (env.DEV_SERVER && !localDevServer) {
+  if (!!env.DEV_SERVER && !localDevServer) {
     localDevServer = devServer()
   }
-  if (err || stats.hasErrors()) {
+  if (err || (stats.hasErrors() && !env.WATCH)) {
     console.error(err)
   }
 })
