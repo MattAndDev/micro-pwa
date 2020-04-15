@@ -4,7 +4,7 @@
   "description": "Micro pwa setup with preact, typescript, ssr and jss",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register -p ./ -w -d -h -b debug",
-    "bundle": "ts-node -r tsconfig-paths/register -p ./ -b debug",
+    "bundle": "ts-node -r tsconfig-paths/register -p ./",
     "bundle:debug": "ts-node -r tsconfig-paths/register -p ./ -b debug",
     "code:quality": "npm run prettier:write && npm run eslint:write",
     "eslint:write": "eslint --fix -c ./.eslintrc.js './{source,server,scripts,conf}/**/*.{js,ts,tsx}'",
