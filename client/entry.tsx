@@ -7,10 +7,7 @@ const renderFunc = env.HMR_ENABLED === 'true' ? render : hydrate
 
 renderFunc(<App />, document.body)
 renderFunc(<Head />, document.head)
-// Set up HMR re-rendering.
-// @ts-ignore
 if (module.hot) {
-  // @ts-ignore
   module.hot.accept()
 }
 if ('serviceWorker' in navigator) {
