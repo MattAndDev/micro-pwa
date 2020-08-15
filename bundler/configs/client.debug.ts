@@ -1,4 +1,4 @@
-import * as merge from 'webpack-merge'
+import merge from 'webpack-merge'
 import baseConf from './client.base'
 import * as webpack from 'webpack'
 

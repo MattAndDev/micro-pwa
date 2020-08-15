@@ -6,12 +6,19 @@
     "strict": true,
     "target": "ES5",
     "sourceMap": true,
+    "esModuleInterop": true,
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@server/*": ["./server/*"],
-      "@client/*": ["./client/*"],
-      "@env": ["env.ts"]
+      "@server/*": [
+        "./server/*"
+      ],
+      "@client/*": [
+        "./client/*"
+      ],
+      "@env": [
+        "env.ts"
+      ]
     }
   }
 }

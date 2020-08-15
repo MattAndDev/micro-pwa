@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import * as express from 'express'
+import express from 'express'
 import { renderView } from './renderer'
 import { hmrProxy } from './hmr-proxy'
 import env from '@env'

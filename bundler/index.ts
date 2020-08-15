@@ -1,11 +1,11 @@
 import { hmrServer } from './hmr-server'
 import { devServer } from './dev-server'
-import * as webpack from 'webpack'
+import webpack from 'webpack'
 import serverDebugConf from './configs/server.debug'
 import serverProdConf from './configs/server.prod'
 import clientDebugConf from './configs/client.debug'
 import clientProdConf from './configs/client.prod'
-import nodemon = require('nodemon')
+import nodemon from 'nodemon'
 import env from '@env'
 
 // pick configs

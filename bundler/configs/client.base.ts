@@ -1,11 +1,11 @@
-import * as merge from 'webpack-merge'
+import merge from 'webpack-merge'
 import { resolve } from 'path'
 import baseConf from './base'
 import * as webpack from 'webpack'
 import { InjectManifest } from 'workbox-webpack-plugin'
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const hotMiddlewareScript = `webpack-hot-middleware/client?path=http://localhost:4141/__webpack_hmr`
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import env from '@env'
+const hotMiddlewareScript = `webpack-hot-middleware/client?path=http://localhost:4141/__webpack_hmr`
 
 const conf: webpack.Configuration = {
   context: resolve(process.cwd(), 'client'),
@@ -16,12 +16,12 @@ const conf: webpack.Configuration = {
     'sw.js': './sw.ts',
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
+    new CopyWebpackPlugin({
+      patterns: [{
         from: './static',
         to: './static/',
-      },
-    ]),
+      }],
+    }),
     new InjectManifest({
       swSrc: './sw.ts',
     }),

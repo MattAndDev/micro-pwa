@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { Configuration } from 'webpack'
-import * as merge from 'webpack-merge'
+import merge from 'webpack-merge'
 import baseConf from './base'
 import env from '@env'
 

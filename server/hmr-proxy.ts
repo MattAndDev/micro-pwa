@@ -1,5 +1,5 @@
 import { Application } from 'express'
-import * as proxy from 'express-http-proxy'
+import proxy from 'express-http-proxy'
 
 export const hmrProxy = (app: Application): void => {
   app.use(

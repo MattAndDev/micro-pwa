@@ -1,12 +1,12 @@
-import * as webpack from 'webpack'
-import * as middleware from 'webpack-dev-middleware'
+import webpack from 'webpack'
+import middleware from 'webpack-dev-middleware'
 import CONF from './configs/client.debug'
 import * as express from 'express'
-import * as cors from 'cors'
+import cors from 'cors'
 
 export const hmrServer = (hmr = false, watch = false): void => {
   const compiler = webpack({ ...CONF, watch: !!watch })
-  const app = express()
+  const app = express.default()
   app.use(cors())
   app.use(
     middleware(compiler, {

@@ -1,4 +1,4 @@
-import * as nodemon from 'nodemon'
+import nodemon from 'nodemon'
 import { resolve } from 'path'
 import env from '@env'
 
