@@ -13,25 +13,31 @@ const conf: webpack.Configuration = {
     'app.js': env.HMR_ENABLED
       ? ['./entry.tsx', hotMiddlewareScript]
       : './entry.tsx',
-    'sw.js': './sw.ts',
+    'sw.js': './sw.ts'
   },
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [{
-        from: './static',
-        to: './static/',
-      }],
+      patterns: [
+        {
+          from: './static',
+          to: './static/'
+        }
+      ]
     }),
-    new InjectManifest({
-      swSrc: './sw.ts',
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      dontCacheBustURLsMatching: /\*hot-update.json$/,
-    }), 
+    ...(!env.HMR_ENABLED
+      ? [
+          new InjectManifest({
+            swSrc: './sw.ts',
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            dontCacheBustURLsMatching: /\*hot-update.json$/
+          })
+        ]
+      : []),
     new webpack.HotModuleReplacementPlugin({
-        requestTimeout: 1000000
+      requestTimeout: 1000000
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   optimization: {
     splitChunks: {
@@ -40,17 +46,17 @@ const conf: webpack.Configuration = {
           name: 'js/lib.js',
           test: /node_modules/,
           chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
+          enforce: true
+        }
+      }
+    }
   },
   output: {
     filename: 'js/[name]',
     chunkFilename: '[name]',
     path: resolve(`./${env.OUT_DIR}/client`),
-    publicPath: '/',
-  },
+    publicPath: '/'
+  }
 }
 
 export default merge(baseConf, conf)

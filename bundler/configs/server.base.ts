@@ -8,13 +8,13 @@ const conf: Configuration = {
   target: 'node',
   context: resolve(process.cwd(), 'server'),
   entry: {
-    'index.js': './index.ts',
+    'index.js': './index.ts'
   },
   output: {
     filename: 'js/[name]',
     chunkFilename: '[name]',
     path: resolve(`./${env.OUT_DIR}/server`),
-    publicPath: '/',
+    publicPath: '/'
   },
   optimization: {
     splitChunks: {
@@ -22,11 +22,11 @@ const conf: Configuration = {
         vendor: {
           name: 'js/lib.js',
           test: /node_modules/,
-          enforce: true,
-        },
-      },
-    },
-  },
+          enforce: true
+        }
+      }
+    }
+  }
 }
 
 export default merge(baseConf, conf)

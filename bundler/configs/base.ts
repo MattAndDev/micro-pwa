@@ -10,27 +10,27 @@ const conf: Configuration = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        options: { configFile: resolve(process.cwd(), './tsconfig.json') },
+        options: { configFile: resolve(process.cwd(), './tsconfig.json') }
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: {
           loader: 'file-loader',
           options: {
-            outputPath: 'images/',
-          },
-        },
+            outputPath: 'images/'
+          }
+        }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: {
           loader: 'file-loader',
           options: {
-            outputPath: 'fonts/',
-          },
-        },
-      },
-    ],
+            outputPath: 'fonts/'
+          }
+        }
+      }
+    ]
   },
   stats: 'errors-only',
   plugins: [
@@ -40,17 +40,17 @@ const conf: Configuration = {
       BODY_ASSETS: `
         <script type="text/javascript" src="/js/lib.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
-      `,
-    }),
+      `
+    })
   ],
   resolve: {
     alias: {
       react: 'preact/compat',
-      'react-dom': 'preact/compat',
+      'react-dom': 'preact/compat'
     },
     extensions: ['.js', '.ts', '.tsx', '.css'],
-    plugins: [new TsconfigPathsPlugin()],
-  },
+    plugins: [new TsconfigPathsPlugin()]
+  }
 }
 
 export default conf

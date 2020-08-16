@@ -5,7 +5,7 @@ export const hmrProxy = (app: Application): void => {
   app.use(
     '*.(map|js|json)',
     proxy('http://localhost:4141', {
-      proxyReqPathResolver: function(req) {
+      proxyReqPathResolver: function (req) {
         return req.originalUrl
       }
     })
