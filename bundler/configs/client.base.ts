@@ -29,7 +29,7 @@ const conf: webpack.Configuration = {
       dontCacheBustURLsMatching: /\*hot-update.json$/,
     }), 
     new webpack.HotModuleReplacementPlugin({
-        requestTImeout: 100000
+        requestTimeout: 1000000
     }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
