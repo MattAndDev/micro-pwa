@@ -24,8 +24,13 @@ const conf: webpack.Configuration = {
     }),
     new InjectManifest({
       swSrc: './sw.ts',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      dontCacheBustURLsMatching: /\*hot-update.json$/,
+    }), 
+    new webpack.HotModuleReplacementPlugin({
+        requestTImeout: 100000
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
   optimization: {
