@@ -3,7 +3,6 @@ import { Configuration } from 'webpack'
 import { resolve } from 'path'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import env from '@env'
-
 const conf: Configuration = {
   module: {
     rules: [
@@ -36,7 +35,6 @@ const conf: Configuration = {
   plugins: [
     new webpack.EnvironmentPlugin({
       ...env,
-      // this sucks
       BODY_ASSETS: `
         <script type="text/javascript" src="/js/lib.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>

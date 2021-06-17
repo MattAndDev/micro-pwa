@@ -22,7 +22,7 @@ webpack({ ...serverConf, watch: !!env.WATCH }, (err, stats) => {
   if (!!env.DEV_SERVER && !localDevServer) {
     localDevServer = devServer()
   }
-  if (err || (stats.hasErrors() && !env.WATCH)) {
+  if (err || (stats?.hasErrors() && !env.WATCH)) {
     console.error(err)
   }
 })
@@ -32,7 +32,7 @@ if (env.DEV_SERVER) {
   hmrServer(!!env.HMR_ENABLED, !!env.WATCH)
 } else {
   webpack({ ...clientConf, watch: !!env.WATCH }, (err, stats) => {
-    if (err || stats.hasErrors()) {
+    if (err || stats?.hasErrors()) {
       console.error(err)
     }
   })

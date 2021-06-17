@@ -43,7 +43,7 @@ const conf: webpack.Configuration = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          name: 'js/lib.js',
+          name: 'lib.js',
           test: /node_modules/,
           chunks: 'all',
           enforce: true

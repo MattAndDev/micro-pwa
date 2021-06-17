@@ -4,7 +4,7 @@
     "jsxFactory": "h",
     "moduleResolution": "node",
     "strict": true,
-    "target": "ES5",
+    "target": "ES2017",
     "sourceMap": true,
     "esModuleInterop": true,
     "rootDir": "./",
