@@ -1,6 +1,7 @@
 import { h, FunctionalComponent } from 'preact'
 import Router, { RouterProps } from 'preact-router'
 import { CONFIG, ROUTE_ID } from './routes'
+import './styles/variables.css'
 
 export const App: FunctionalComponent<RouterProps> = (props: RouterProps) => (
   <Router {...props}>

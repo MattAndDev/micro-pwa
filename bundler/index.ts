@@ -28,8 +28,8 @@ webpack({ ...serverConf, watch: !!env.WATCH }, (err, stats) => {
 })
 
 // bundle | serve client code
-if (env.DEV_SERVER) {
-  hmrServer(!!env.HMR_ENABLED, !!env.WATCH)
+if (env.HMR_ENABLED) {
+  hmrServer(true, !!env.WATCH)
 } else {
   webpack({ ...clientConf, watch: !!env.WATCH }, (err, stats) => {
     if (err || stats?.hasErrors()) {

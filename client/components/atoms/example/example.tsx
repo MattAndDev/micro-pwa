@@ -1,14 +1,15 @@
 import { h, FunctionalComponent } from 'preact'
 import s from './example.css'
+import cn from 'classnames'
 export type ExampleProps = h.JSX.HTMLAttributes<HTMLButtonElement>
 
 export const Example: FunctionalComponent<ExampleProps> = ({
   children,
-  className = '',
+  className,
   ...rest
 }) => {
   return (
-    <button className={`${s.wrap} ${className}`.trim()} {...rest}>
+    <button className={cn(s.wrap, className)} {...rest}>
       {children}
     </button>
   )

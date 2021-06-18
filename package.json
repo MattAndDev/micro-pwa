@@ -21,17 +21,18 @@
   },
   "homepage": "https://github.com/MattAndDev/micro-pwa#readme",
   "dependencies": {
+    "classnames": "^2.3.1",
+    "compression": "^1.7.4",
     "express": "^5.0.0-alpha.7",
-    "express-http-proxy": "^1.6.2",
     "preact": "^10.5.13",
     "preact-router": "^3.2.1"
   },
   "devDependencies": {
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.1",
+    "@types/compression": "^1.7.0",
     "@types/copy-webpack-plugin": "^8.0.0",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
-    "@types/express-http-proxy": "^1.6.1",
     "@types/mini-css-extract-plugin": "^1.4.3",
     "@types/nodemon": "^1.19.0",
     "@types/webpack": "^5.28.0",
@@ -51,7 +52,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "file-loader": "^6.2.0",
-    "isomorphic-style-loader": "^5.1.0",
     "mini-css-extract-plugin": "^1.6.0",
     "nodemon": "^2.0.7",
     "preact-render-to-string": "^5.1.19",

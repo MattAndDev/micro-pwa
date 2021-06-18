@@ -12,7 +12,7 @@ const conf: webpack.Configuration = {
   context: resolve(process.cwd(), 'client'),
   entry: {
     'app.js': env.HMR_ENABLED
-      ? ['./entry.tsx', hotMiddlewareScript]
+      ? [hotMiddlewareScript, './entry.tsx']
       : './entry.tsx',
     'sw.js': './sw.ts'
   },
@@ -57,11 +57,12 @@ const conf: webpack.Configuration = {
             dontCacheBustURLsMatching: /\*hot-update.json$/
           })
         ]
-      : []),
-    new webpack.HotModuleReplacementPlugin({
-      requestTimeout: 1000000
-    }),
-    new webpack.NoEmitOnErrorsPlugin()
+      : [
+          new webpack.HotModuleReplacementPlugin({
+            requestTimeout: 100
+          }),
+          new webpack.NoEmitOnErrorsPlugin()
+        ])
   ],
   optimization: {
     splitChunks: {
@@ -79,7 +80,7 @@ const conf: webpack.Configuration = {
     filename: 'js/[name]',
     chunkFilename: '[name]',
     path: resolve(`./${env.OUT_DIR}/client`),
-    publicPath: '/'
+    publicPath: env.HMR_ENABLED ? 'http://localhost:4141/' : '/'
   }
 }
 
