@@ -5,6 +5,7 @@ import * as webpack from 'webpack'
 import { InjectManifest } from 'workbox-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import env from '@env'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 const hotMiddlewareScript = `webpack-hot-middleware/client?path=http://localhost:4141/__webpack_hmr`
 
 const conf: webpack.Configuration = {
@@ -15,6 +16,26 @@ const conf: webpack.Configuration = {
       : './entry.tsx',
     'sw.js': './sw.ts'
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          env.DEV_SERVER ? 'style-loader' : MiniCssExtractPlugin.loader,
+          '@teamsupercell/typings-for-css-modules-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentContext: resolve(__dirname, 'client'),
+                localIdentName: '[hash:base64]'
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
@@ -23,6 +44,9 @@ const conf: webpack.Configuration = {
           to: './static/'
         }
       ]
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/styles.css'
     }),
     ...(!env.HMR_ENABLED
       ? [

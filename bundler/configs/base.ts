@@ -38,6 +38,7 @@ const conf: Configuration = {
       BODY_ASSETS: `
         <script type="text/javascript" src="/js/lib.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
+        <link href="/css/styles.css" rel="stylesheet">
       `
     })
   ],

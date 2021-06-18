@@ -4,21 +4,15 @@
     "jsxFactory": "h",
     "moduleResolution": "node",
     "strict": true,
-    "target": "ES2017",
+    "target": "ES2015",
     "sourceMap": true,
     "esModuleInterop": true,
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@server/*": [
-        "./server/*"
-      ],
-      "@client/*": [
-        "./client/*"
-      ],
-      "@env": [
-        "env.ts"
-      ]
+      "@server/*": ["./server/*"],
+      "@client/*": ["./client/*"],
+      "@env": ["env.ts"]
     }
   }
 }
