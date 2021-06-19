@@ -1,14 +1,14 @@
-FROM node:12 AS build
+FROM node:14 AS build
 
-WORKDIR /app
+WORKDIR /
 
 COPY . .
 RUN npm i
-RUN npm run build
+RUN npm run bundle
 
 FROM node:alpine
 
-WORKDIR /app
-COPY --from=build /app/public/ /app/public
-COPY --from=build /app/private/ /app/private
-ENTRYPOINT ["node", "/app/private/js/index.js"]
+WORKDIR /
+COPY --from=build /app ./app
+EXPOSE 4242
+ENTRYPOINT ["node", "/app/server/js/index.js"]

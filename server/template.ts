@@ -4,9 +4,10 @@ export const template = (head = '', html: string): string =>
   `
     <head>
       ${head}
+      ${env.STYLES}
     </head>
     <body>
       ${html}
-      ${env.BODY_ASSETS}
+      ${env.SCRIPTS}
     </body>
   `

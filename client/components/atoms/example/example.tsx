@@ -1,6 +1,6 @@
 import { h, FunctionalComponent } from 'preact'
-import { useStyles } from './example.styles'
-
+import s from './example.css'
+import cn from 'classnames'
 export type ExampleProps = h.JSX.HTMLAttributes<HTMLButtonElement>
 
 export const Example: FunctionalComponent<ExampleProps> = ({
@@ -8,10 +8,9 @@ export const Example: FunctionalComponent<ExampleProps> = ({
   className,
   ...rest
 }) => {
-  const { wrap } = useStyles()
   return (
-    <button className={`${wrap} ${className}`.trim()} {...rest}>
-      {children}
+    <button className={cn(s.wrap, className)} {...rest}>
+      {children}aa
     </button>
   )
 }

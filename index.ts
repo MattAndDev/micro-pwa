@@ -1,6 +1,6 @@
-import * as yargs from 'yargs'
+import yargs from 'yargs'
 const args = yargs
-  .option('hmr', {
+  .options('hmr', {
     alias: 'h',
     type: 'boolean',
     default: '',
@@ -34,7 +34,8 @@ const args = yargs
     alias: 'n',
     type: 'string',
     default: 'production',
-    description: 'Sets NODE_ENV at build time!'
+    description: 'Sets NODE_ENV at build time!',
+    choices: ['production', 'development']
   })
   .option('outDir', {
     alias: 'o',
@@ -43,13 +44,15 @@ const args = yargs
     description: 'Sets output directory'
   }).argv
 
-process.env.NODE_ENV = args.nodeEnv
-process.env.SERVER_PORT = args.serverPort
-process.env.HMR_ENABLED = args.hmr
-process.env.DEV_SERVER = args.devServer
-process.env.WATCH = args.watch
-process.env.BUNDLE_MODE = args.bundleMode
-process.env.OUT_DIR = args.outDir
+if (!('then' in args)) {
+  process.env.NODE_ENV = args.nodeEnv
+  process.env.SERVER_PORT = args.serverPort
+  process.env.HMR_ENABLED = args.hmr
+  process.env.DEV_SERVER = args.devServer
+  process.env.WATCH = args.watch
+  process.env.BUNDLE_MODE = args.bundleMode
+  process.env.OUT_DIR = args.outDir
+}
 
 require('@env')
 require('./bundler')

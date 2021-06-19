@@ -5,15 +5,36 @@ import * as webpack from 'webpack'
 import { InjectManifest } from 'workbox-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import env from '@env'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 const hotMiddlewareScript = `webpack-hot-middleware/client?path=http://localhost:4141/__webpack_hmr`
 
 const conf: webpack.Configuration = {
   context: resolve(process.cwd(), 'client'),
   entry: {
     'app.js': env.HMR_ENABLED
-      ? ['./entry.tsx', hotMiddlewareScript]
+      ? [hotMiddlewareScript, './entry.tsx']
       : './entry.tsx',
     'sw.js': './sw.ts'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          env.DEV_SERVER ? 'style-loader' : MiniCssExtractPlugin.loader,
+          '@teamsupercell/typings-for-css-modules-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentContext: resolve(__dirname, 'client'),
+                localIdentName: '[hash:base64]'
+              }
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new CopyWebpackPlugin({
@@ -24,6 +45,9 @@ const conf: webpack.Configuration = {
         }
       ]
     }),
+    new MiniCssExtractPlugin({
+      filename: 'css/styles.css'
+    }),
     ...(!env.HMR_ENABLED
       ? [
           new InjectManifest({
@@ -33,17 +57,18 @@ const conf: webpack.Configuration = {
             dontCacheBustURLsMatching: /\*hot-update.json$/
           })
         ]
-      : []),
-    new webpack.HotModuleReplacementPlugin({
-      requestTimeout: 1000000
-    }),
-    new webpack.NoEmitOnErrorsPlugin()
+      : [
+          new webpack.HotModuleReplacementPlugin({
+            requestTimeout: 100
+          }),
+          new webpack.NoEmitOnErrorsPlugin()
+        ])
   ],
   optimization: {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          name: 'js/lib.js',
+          name: 'lib.js',
           test: /node_modules/,
           chunks: 'all',
           enforce: true
@@ -55,7 +80,7 @@ const conf: webpack.Configuration = {
     filename: 'js/[name]',
     chunkFilename: '[name]',
     path: resolve(`./${env.OUT_DIR}/client`),
-    publicPath: '/'
+    publicPath: env.HMR_ENABLED ? 'http://localhost:4141/' : '/'
   }
 }
 

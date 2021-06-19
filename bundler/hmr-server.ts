@@ -5,7 +5,7 @@ import * as express from 'express'
 import cors from 'cors'
 
 export const hmrServer = (hmr = false, watch = false): void => {
-  const compiler = webpack({ ...CONF, watch: !!watch })
+  const compiler = webpack({ ...CONF, watch: !!watch }, () => {})
   const app = express.default()
   app.use(cors())
   app.use(

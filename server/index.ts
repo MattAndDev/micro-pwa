@@ -1,16 +1,14 @@
 import { resolve } from 'path'
 import express from 'express'
 import { renderView } from './renderer'
-import { hmrProxy } from './hmr-proxy'
 import env from '@env'
+import compression from 'compression'
 
 const app = express()
-
-// mount hmr proxy server
-if (env.HMR_ENABLED) hmrProxy(app)
+app.use(compression())
 
 // mount static
-app.use(express.static(resolve('./', env.OUT_DIR || 'app', 'client')))
+app.use(express.static(resolve(env.OUT_DIR, 'client')))
 
 // all the rest
 app.get('*', (req, res) => {
