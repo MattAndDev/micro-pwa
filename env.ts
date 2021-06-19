@@ -19,7 +19,11 @@ type Env = {
   OUT_DIR: string
   SCRIPTS: string
   STYLES: string
+  MANIFEST: string
 }
+
+const basePath =
+  process.env.HMR_ENABLED === 'true' ? 'http://localhost:4141' : ''
 
 const env: Env = {
   NODE_ENV: (process.env.NODE_ENV as Env['NODE_ENV']) || 'production',
@@ -30,14 +34,13 @@ const env: Env = {
   BUNDLE_MODE: process.env.BUNDLE_MODE as Env['BUNDLE_MODE'],
   BODY_ASSETS: process.env.BODY_ASSETS || '',
   OUT_DIR: process.env.OUT_DIR || './app',
-  STYLES: '<link href="/css/styles.css" rel="stylesheet">',
+  STYLES: process.env.HMR_ENABLED
+    ? ''
+    : `<link href="${basePath}/css/styles.css" rel="stylesheet">`,
+  MANIFEST: `<link rel="manifest" href="${basePath}/static/manifest.json" />`,
   SCRIPTS: `
-    <script type="text/javascript" src="${
-      process.env.HMR_ENABLED === 'true' ? 'http://localhost:4141' : ''
-    }/js/lib.js"></script>
-    <script type="text/javascript" src="${
-      process.env.HMR_ENABLED === 'true' ? 'http://localhost:4141' : ''
-    }/js/app.js"></script>
+    <script type="text/javascript" src="${basePath}/js/lib.js"></script>
+    <script type="text/javascript" src="${basePath}/js/app.js"></script>
     `
 }
 
