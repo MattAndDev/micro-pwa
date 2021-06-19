@@ -6,7 +6,7 @@
     "start": "ts-node -r tsconfig-paths/register -p ./ -w -d -h -b debug -n development",
     "bundle": "ts-node -r tsconfig-paths/register -p ./",
     "bundle:debug": "ts-node -r tsconfig-paths/register -p ./ -b debug",
-    "test": "jest **/*.test.{ts,tsx}",
+    "test": "jest --env jsdom",
     "lint": "npm run prettier:write && npm run eslint:write",
     "eslint:write": "eslint --fix -c ./.eslintrc.js './{source,server,scripts,conf}/**/*.{js,ts,tsx}'",
     "prettier:write": "prettier ./.prettierrc './**/*' --write --loglevel warn"
