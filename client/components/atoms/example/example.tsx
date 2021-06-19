@@ -10,7 +10,7 @@ export const Example: FunctionalComponent<ExampleProps> = ({
 }) => {
   return (
     <button className={cn(s.wrap, className)} {...rest}>
-      {children}
+      {children}aa
     </button>
   )
 }
